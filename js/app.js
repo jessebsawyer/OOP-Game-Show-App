@@ -7,5 +7,5 @@ document.getElementById('btn__reset').addEventListener('click', () => game.start
 // Run handleINteraction() when a letter is clicked
 const keys = document.querySelectorAll('.key');
 keys.forEach(key => {
-    key.addEventListener('click', (e) => game.handleInteraction(e.target.textContent));
+    key.addEventListener('click', (e) => game.handleInteraction(e.target));
 });

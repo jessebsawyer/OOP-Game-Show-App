@@ -11,14 +11,19 @@
          this.activePhrase = null;
      }
 
+     get phraseClass () {
+         this.activePhrase = this.getRandomPhrase();
+         const phrase = new Phrase(this.activePhrase);
+         return phrase;
+     }
      
      // Hides the overlay when called
      startGame() {
         const overlay = document.getElementById('overlay');
         overlay.style.display = 'none';
-        this.activePhrase = this.getRandomPhrase();
-        const phrase = new Phrase(this.activePhrase);
-        return phrase.addPhraseToDisplay();
+        // this.activePhrase = this.getRandomPhrase();
+        // const phrase = new Phrase(this.activePhrase);
+        return this.phraseClass.addPhraseToDisplay();
         
      }
 
@@ -29,8 +34,14 @@
      }
 
      handleInteraction(e) {
-       
-     }
+       if (this.phraseClass.checkLetter(this.activePhrase.includes(e.textContent))) {
+           this.phraseClass.showMatchedLetter(e);
+           console.log(e);
+           e.className = 'chosen';
+       }else {
+           e.className = 'wrong';
+       }
+    }
 
      removeLife() {
 
@@ -45,5 +56,4 @@
      }
  }
 
- const test = new Game();
- console.log(test.handleInteraction());
+ 

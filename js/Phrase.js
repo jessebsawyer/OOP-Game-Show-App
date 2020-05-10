@@ -21,16 +21,17 @@ class Phrase {
     }
 
      checkLetter(letter) {
-        this.letter = letter;
-        if (this.phrase.starsWith(this.letter)) {
-            console.log(this.letter);
-            return this.letter;
-        }
+        return letter;
         
     }
 
      showMatchedLetter(letter) {
-        
+        const lis = document.querySelectorAll('.letter');
+        lis.forEach(li => {
+            if (li.textContent === letter.textContent) {
+                li.className = 'show';
+            }
+        })
     }
 
      
