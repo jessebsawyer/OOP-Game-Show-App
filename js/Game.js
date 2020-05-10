@@ -34,7 +34,7 @@
      }
 
      handleInteraction(e) {
-       if (this.phraseClass.checkLetter(this.activePhrase.includes(e.textContent))) {
+       if (this.phraseClass.checkLetter(this.activePhrase) === true) {
            this.phraseClass.showMatchedLetter(e);
            console.log(e);
            e.className = 'chosen';

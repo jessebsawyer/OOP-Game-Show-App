@@ -21,9 +21,11 @@ class Phrase {
     }
 
      checkLetter(letter) {
-        return letter;
-        
-    }
+        this.letter = letter;
+        if (this.letter.includes(this.phrase)) {
+          return this.letter;
+        }
+    }   
 
      showMatchedLetter(letter) {
         const lis = document.querySelectorAll('.letter');
