@@ -6,11 +6,7 @@ class Game {
          this.activePhrase = null;
      }
 
-    //  get phraseClass () {
-    //      this.activePhrase = this.getRandomPhrase();
-    //      const phrase = new Phrase(this.activePhrase);
-    //      return phrase;
-    //  }
+   
      
      // Hides the overlay when called
      startGame() {
@@ -28,25 +24,84 @@ class Game {
      }
 
      handleInteraction(e) {
-       if (this.activePhrase.checkLetter(e.innerText) === e.textContent) {
-           this.activePhrase.showMatchedLetter(e);
-           console.log(e);
+       if (this.activePhrase.checkLetter(e.innerText) === true) {
+           this.activePhrase.showMatchedLetter(e.innerText);
+           this.checkForWin();
            e.className = 'chosen';
        }else {
            e.className = 'wrong';
+           e.disabled = true;
+           console.log(e);
+           console.log(this.activePhrase);
+           this.removeLife();
+           console.log(this.missed);
        }
     }
 
      removeLife() {
-
+        const heartsOne = document.querySelectorAll('#scoreboard img')[0];
+        const heartsTwo = document.querySelectorAll('#scoreboard img')[1];
+        const heartsThree = document.querySelectorAll('#scoreboard img')[2];
+        const heartsFour = document.querySelectorAll('#scoreboard img')[3];
+        this.missed += 1;
+        if (this.missed === 1) {
+            heartsOne.src = '/images/lostHeart.png';
+        }
+        if (this.missed === 2) {
+            heartsTwo.src = '/images/lostHeart.png';
+        }
+        if (this.missed === 3) {
+            heartsThree.src = '/images/lostHeart.png';
+        }
+        if (this.missed === 4) {
+            heartsFour.src = '/images/lostHeart.png';
+        }
+        if (this.missed === 5) {
+            this.gameOver();
+        }
      }
 
      checkForWin() {
-
+        const lisShow = document.querySelectorAll('.show').length;
+        const lisTotal = document.querySelectorAll('#phrase li').length;
+        const lisSpace = document.querySelectorAll('.space').length;
+        const phraseLength = lisTotal - lisSpace;
+       if (phraseLength === lisShow) {
+            this.gameOver(true);
+        }
      }
 
-     gameOver() {
-
+     gameOver(game) {
+        const overlay = document.getElementById('overlay');
+        const h2 = document.getElementById('game-over-message');
+        const lisTotal = document.querySelectorAll('#phrase li');
+        const keyChosen = document.querySelectorAll('.chosen');
+        const keyWrong = document.querySelectorAll('.wrong');
+        const hearts = document.querySelectorAll('#scoreboard img');
+        if (game === true) {
+            console.log('win');
+            h2.textContent = 'Congrats, you win!'
+            overlay.style.display = '';
+            overlay.className = 'win';
+            lisTotal.forEach(li => li.remove());
+            keyChosen.forEach(key => key.className = 'key');
+            keyWrong.forEach(key => key.className = 'key');
+            keyWrong.forEach(key => key.disabled = false);
+            this.missed = 0;
+            hearts.forEach(heart => heart.src = '/images/liveHeart.png');
+            
+        }else {
+            console.log('lose');
+            h2.textContent = 'Looks like you ran out of hearts :( '
+            overlay.style.display = '';
+            overlay.className = 'lose';
+            lisTotal.forEach(li => li.remove());
+            keyChosen.forEach(key => key.className = 'key');
+            keyWrong.forEach(key => key.className = 'key');
+            keyWrong.forEach(key => key.disabled = false);
+            this.missed = 0;
+            hearts.forEach(heart => heart.src = '/images/liveHeart.png');
+        }
      }
  }
 
