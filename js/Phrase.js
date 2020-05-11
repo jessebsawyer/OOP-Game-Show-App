@@ -22,15 +22,17 @@ class Phrase {
 
      checkLetter(letter) {
         this.letter = letter;
-        if (this.letter.includes(this.phrase)) {
-          return this.letter;
+        if (this.phrase.includes(this.letter)) {
+          return true;
+        }else {
+            return false;
         }
     }   
 
      showMatchedLetter(letter) {
         const lis = document.querySelectorAll('.letter');
         lis.forEach(li => {
-            if (li.textContent === letter.textContent) {
+            if (li.textContent === letter) {
                 li.className = 'show';
             }
         })
