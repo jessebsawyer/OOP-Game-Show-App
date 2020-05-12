@@ -22,15 +22,33 @@ class Game {
         const randomNum = Math.floor(Math.random() * this.phrases.length);
         return this.phrases[randomNum];
      }
-
+     
      handleInteraction(e) {
-       if (this.activePhrase.checkLetter(e.innerText) === true) {
+        const keys = document.querySelectorAll('.key');
+       if (this.activePhrase.checkLetter(e.innerText) === true || this.activePhrase.checkLetter(e.key) === true) {
            this.activePhrase.showMatchedLetter(e.innerText);
-           this.checkForWin();
+           this.activePhrase.showMatchedLetter(e.key);
            e.className = 'chosen';
+           e.disabled = true;
+           keys.forEach(key => {
+               if (e.key === key.textContent && this.activePhrase.checkLetter(e.key) === true) {
+                   console.log('Right letter');
+                   key.className = 'chosen';
+                   key.disabled = true;
+                   
+               }
+            })
+           this.checkForWin();
        }else {
            e.className = 'wrong';
            e.disabled = true;
+           keys.forEach(key => {
+            if (e.key === key.textContent && this.activePhrase.checkLetter(e.key) === false) {
+                key.className = 'wrong';
+                console.log('Wrong letter');
+                document.addEventListener('keyup', (e) => false);
+            }
+           })
            console.log(e);
            console.log(this.activePhrase);
            this.removeLife();

@@ -11,6 +11,4 @@ keys.forEach(key => {
 });
 
 // Run handleInteraction when a letter is typed
-keys.forEach(key => {
-    key.addEventListener('keyup', (e) => game.handleInteraction(e));
-})
+document.addEventListener('keyup', (e) => game.handleInteraction(e));
