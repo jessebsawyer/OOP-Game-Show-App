@@ -1,4 +1,4 @@
-
+// Set class
 class Game {
      constructor() {
          this.missed = 0;
@@ -23,6 +23,7 @@ class Game {
         return this.phrases[randomNum];
      }
      
+     // Handles game logic
      handleInteraction(e) {
         const keys = document.querySelectorAll('.key');
        if (this.activePhrase.checkLetter(e.innerText) === true || this.activePhrase.checkLetter(e.key) === true) {
@@ -46,7 +47,7 @@ class Game {
             if (e.key === key.textContent && this.activePhrase.checkLetter(e.key) === false) {
                 key.className = 'wrong';
                 console.log('Wrong letter');
-                document.addEventListener('keyup', (e) => false);
+                
             }
            })
            console.log(e);
@@ -56,6 +57,7 @@ class Game {
        }
     }
 
+     // Removes heart and adds to the missed count
      removeLife() {
         const heartsOne = document.querySelectorAll('#scoreboard img')[0];
         const heartsTwo = document.querySelectorAll('#scoreboard img')[1];
@@ -78,7 +80,7 @@ class Game {
             this.gameOver();
         }
      }
-
+     // Checks to see if the phrase is all filled out and ends the game 
      checkForWin() {
         const lisShow = document.querySelectorAll('.show').length;
         const lisTotal = document.querySelectorAll('#phrase li').length;
@@ -88,7 +90,7 @@ class Game {
             this.gameOver(true);
         }
      }
-
+     // Sets style for end game result and resets the game
      gameOver(game) {
         const overlay = document.getElementById('overlay');
         const h2 = document.getElementById('game-over-message');

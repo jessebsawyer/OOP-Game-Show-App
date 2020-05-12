@@ -1,9 +1,9 @@
-
+// Set class 
 class Phrase {
      constructor(phrase) {
          this.phrase = phrase.toLowerCase();
     }
-
+     // Adds a new phrsase on the board
      addPhraseToDisplay() {
        const split = this.phrase.split('');
        const ul = document.querySelector('.section ul');
@@ -19,7 +19,7 @@ class Phrase {
            ul.appendChild(li);
         }); 
     }
-
+     // Checks if letter guessed matches a letter in the phrase
      checkLetter(letter) {
         this.letter = letter;
         if (this.phrase.includes(this.letter)) {
@@ -28,7 +28,7 @@ class Phrase {
             return false;
         }
     }   
-
+     // Shows the matched letter on the board
      showMatchedLetter(letter) {
         const lis = document.querySelectorAll('.letter');
         lis.forEach(li => {
