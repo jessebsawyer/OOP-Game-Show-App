@@ -63,16 +63,16 @@ class Game {
         const heartsFour = document.querySelectorAll('#scoreboard img')[3];
         this.missed += 1;
         if (this.missed === 1) {
-            heartsOne.src = '/images/lostHeart.png';
+            heartsOne.src = 'images/lostHeart.png';
         }
         if (this.missed === 2) {
-            heartsTwo.src = '/images/lostHeart.png';
+            heartsTwo.src = 'images/lostHeart.png';
         }
         if (this.missed === 3) {
-            heartsThree.src = '/images/lostHeart.png';
+            heartsThree.src = 'images/lostHeart.png';
         }
         if (this.missed === 4) {
-            heartsFour.src = '/images/lostHeart.png';
+            heartsFour.src = 'images/lostHeart.png';
         }
         if (this.missed === 5) {
             this.gameOver();
@@ -106,7 +106,7 @@ class Game {
             keyWrong.forEach(key => key.className = 'key');
             keyWrong.forEach(key => key.disabled = false);
             this.missed = 0;
-            hearts.forEach(heart => heart.src = '/images/liveHeart.png');
+            hearts.forEach(heart => heart.src = 'images/liveHeart.png');
             
         }else {
             console.log('lose');
@@ -118,7 +118,7 @@ class Game {
             keyWrong.forEach(key => key.className = 'key');
             keyWrong.forEach(key => key.disabled = false);
             this.missed = 0;
-            hearts.forEach(heart => heart.src = '/images/liveHeart.png');
+            hearts.forEach(heart => heart.src = 'images/liveHeart.png');
         }
      }
  }
