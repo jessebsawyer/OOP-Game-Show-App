@@ -14,7 +14,12 @@ class Game {
         overlay.style.display = 'none';
         this.activePhrase = new Phrase(this.getRandomPhrase());
         this.activePhrase.addPhraseToDisplay();
-        
+     }
+
+     enableKeyboard() {
+        document.onkeydown = function(e) {
+            return true;
+        }
      }
 
      // Returns a random phrase
@@ -30,24 +35,21 @@ class Game {
            this.activePhrase.showMatchedLetter(e.innerText);
            this.activePhrase.showMatchedLetter(e.key);
            e.className = 'chosen';
-           
+           e.disabled = true;
            keys.forEach(key => {
                if (e.key === key.textContent && this.activePhrase.checkLetter(e.key) === true) {
                    console.log('Right letter');
                    key.className = 'chosen';
-                   
-                   
-               }
+                }
             })
            this.checkForWin();
        }else {
            e.className = 'wrong';
-           
+           e.disabled = true;
            keys.forEach(key => {
             if (e.key === key.textContent && this.activePhrase.checkLetter(e.key) === false) {
                 key.className = 'wrong';
                 console.log('Wrong letter');
-                
             }
            })
            console.log(e);
@@ -104,9 +106,10 @@ class Game {
             overlay.style.display = '';
             overlay.className = 'win';
             lisTotal.forEach(li => li.remove());
+            keyChosen.forEach(key => key.disabled = false);
+            keyWrong.forEach(key => key.disabled = false);
             keyChosen.forEach(key => key.className = 'key');
             keyWrong.forEach(key => key.className = 'key');
-            
             this.missed = 0;
             hearts.forEach(heart => heart.src = 'images/liveHeart.png');
             
@@ -116,9 +119,10 @@ class Game {
             overlay.style.display = '';
             overlay.className = 'lose';
             lisTotal.forEach(li => li.remove());
+            keyChosen.forEach(key => key.disabled = false);
+            keyWrong.forEach(key => key.disabled = false);
             keyChosen.forEach(key => key.className = 'key');
             keyWrong.forEach(key => key.className = 'key');
-            
             this.missed = 0;
             hearts.forEach(heart => heart.src = 'images/liveHeart.png');
         }
