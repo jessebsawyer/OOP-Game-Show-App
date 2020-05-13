@@ -35,7 +35,7 @@ class Game {
                if (e.key === key.textContent && this.activePhrase.checkLetter(e.key) === true) {
                    console.log('Right letter');
                    key.className = 'chosen';
-                   key.disabled = true;
+                   
                    
                }
             })
@@ -106,7 +106,7 @@ class Game {
             lisTotal.forEach(li => li.remove());
             keyChosen.forEach(key => key.className = 'key');
             keyWrong.forEach(key => key.className = 'key');
-            keyWrong.forEach(key => key.disabled = false);
+            
             this.missed = 0;
             hearts.forEach(heart => heart.src = 'images/liveHeart.png');
             
@@ -118,7 +118,7 @@ class Game {
             lisTotal.forEach(li => li.remove());
             keyChosen.forEach(key => key.className = 'key');
             keyWrong.forEach(key => key.className = 'key');
-            keyWrong.forEach(key => key.disabled = false);
+            
             this.missed = 0;
             hearts.forEach(heart => heart.src = 'images/liveHeart.png');
         }
