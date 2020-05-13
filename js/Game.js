@@ -30,7 +30,7 @@ class Game {
            this.activePhrase.showMatchedLetter(e.innerText);
            this.activePhrase.showMatchedLetter(e.key);
            e.className = 'chosen';
-           e.disabled = true;
+           
            keys.forEach(key => {
                if (e.key === key.textContent && this.activePhrase.checkLetter(e.key) === true) {
                    console.log('Right letter');
@@ -42,7 +42,7 @@ class Game {
            this.checkForWin();
        }else {
            e.className = 'wrong';
-           e.disabled = true;
+           
            keys.forEach(key => {
             if (e.key === key.textContent && this.activePhrase.checkLetter(e.key) === false) {
                 key.className = 'wrong';
