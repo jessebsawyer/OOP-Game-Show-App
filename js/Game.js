@@ -2,7 +2,11 @@
 class Game {
      constructor() {
          this.missed = 0;
-         this.phrases = ['To be or not to be', 'A piece of cake', 'Back to square one', 'Chip on your shoulder', 'Barking up the wrong tree'];
+         this.phrases = ['To be or not to be', 
+         'A piece of cake', 
+         'Back to square one', 
+         'Chip on your shoulder', 
+         'Barking up the wrong tree'];
          this.activePhrase = null;
      }
 
@@ -61,24 +65,10 @@ class Game {
 
      // Removes heart and adds to the missed count
      removeLife() {
-        const heartsOne = document.querySelectorAll('#scoreboard img')[0];
-        const heartsTwo = document.querySelectorAll('#scoreboard img')[1];
-        const heartsThree = document.querySelectorAll('#scoreboard img')[2];
-        const heartsFour = document.querySelectorAll('#scoreboard img')[3];
+        const hearts = document.querySelector('img[src="images/liveHeart.png"]');
         this.missed += 1;
-        if (this.missed === 1) {
-            heartsOne.src = 'images/lostHeart.png';
-        }
-        if (this.missed === 2) {
-            heartsTwo.src = 'images/lostHeart.png';
-        }
-        if (this.missed === 3) {
-            heartsThree.src = 'images/lostHeart.png';
-        }
-        if (this.missed === 4) {
-            heartsFour.src = 'images/lostHeart.png';
-        }
-        if (this.missed === 5) {
+        hearts.src= 'images/lostHeart.png';
+         if (this.missed === 5) {
             this.gameOver();
         }
      }
@@ -102,7 +92,7 @@ class Game {
         const hearts = document.querySelectorAll('#scoreboard img');
         if (game === true) {
             console.log('win');
-            h2.textContent = 'Congrats, you win!'
+            h2.textContent = 'Congrats, you win!';
             overlay.style.display = '';
             overlay.className = 'win';
             lisTotal.forEach(li => li.remove());

@@ -11,24 +11,5 @@ keys.forEach(key => {
 });
 
 // Run handleInteraction when a letter is typed
-function enable() {
-    document.onkeydown = function(e) {
-        return true;
-    }
-}
-
-function disable() {
-    document.onkeydown = function(e) {
-        return false;
-    }
-}
-
 const overlay = document.getElementById('overlay');
-document.addEventListener('keydown', (e) => {
-    if (overlay.className === 'win' || overlay.className === 'lose') {
-        enable();
-    }else {
-        game.handleInteraction(e);
-        disable();
-    }
-});
+document.addEventListener('keydown', (e) => game.handleInteraction(e));
