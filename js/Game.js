@@ -40,7 +40,7 @@ class Game {
            this.activePhrase.showMatchedLetter(e.key);
            e.className = 'chosen';
            e.disabled = true;
-           keys.forEach(key => {
+         keys.forEach(key => {
                if (e.key === key.textContent && this.activePhrase.checkLetter(e.key) === true) {
                    console.log('Right letter');
                    key.className = 'chosen';
@@ -52,15 +52,20 @@ class Game {
            e.className = 'wrong';
            e.disabled = true;
            keys.forEach(key => {
-                if (e.key === key.textContent && this.activePhrase.checkLetter(e.key) === false) {
+                if (e.key === key.textContent && this.activePhrase.checkLetter(e.key) === false && key.className !== 'wrong') {
                     key.className = 'wrong';
                     key.disabled = true;
                     console.log('Wrong letter');
                 }
-           })
+            })
+            keys.forEach(key => {
+                if (key.className === 'wrong') {
+                    this.removeLife();
+                }
+            })
            console.log(e);
            console.log(this.activePhrase);
-           this.removeLife();
+        //    this.removeLife();
            console.log(this.missed);
        }
     }
