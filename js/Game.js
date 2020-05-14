@@ -15,6 +15,7 @@ class Game {
      // Hides the overlay when called
      startGame() {
         const overlay = document.getElementById('overlay');
+        overlay.className = 'start';
         overlay.style.display = 'none';
         this.activePhrase = new Phrase(this.getRandomPhrase());
         this.activePhrase.addPhraseToDisplay();
