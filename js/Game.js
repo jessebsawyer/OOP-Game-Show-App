@@ -21,9 +21,8 @@ class Game {
      }
 
      enableKeyboard() {
-        document.onkeydown = function(e) {
-            return true;
-        }
+       
+        
      }
 
      // Returns a random phrase
@@ -44,6 +43,7 @@ class Game {
                if (e.key === key.textContent && this.activePhrase.checkLetter(e.key) === true) {
                    console.log('Right letter');
                    key.className = 'chosen';
+                   key.disabled = true;
                 }
             })
            this.checkForWin();
@@ -51,10 +51,11 @@ class Game {
            e.className = 'wrong';
            e.disabled = true;
            keys.forEach(key => {
-            if (e.key === key.textContent && this.activePhrase.checkLetter(e.key) === false) {
-                key.className = 'wrong';
-                console.log('Wrong letter');
-            }
+                if (e.key === key.textContent && this.activePhrase.checkLetter(e.key) === false) {
+                    key.className = 'wrong';
+                    key.disabled = true;
+                    console.log('Wrong letter');
+                }
            })
            console.log(e);
            console.log(this.activePhrase);
@@ -105,7 +106,7 @@ class Game {
             
         }else {
             console.log('lose');
-            h2.textContent = 'Looks like you ran out of hearts :( '
+            h2.textContent = 'Looks like you ran out of hearts :( ';
             overlay.style.display = '';
             overlay.className = 'lose';
             lisTotal.forEach(li => li.remove());
