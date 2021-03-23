@@ -1,7 +1,3 @@
-Treehouse Techdegre Project 4
+Object Oriented Programming Game Show App
 
-Changes I've made for Exceeds Expectations:
-- the lose screen is changed to a gray
-- the chosen buttons are changed to a yellow shade
-- the start class is changed to match the letters
-- Keyup event has been added to allow use of keyboard when choosing letters
+You have five lives, see if you can guess the phrase before it's game over!
